@@ -1,6 +1,6 @@
-import React from 'react'
-import './Book.css'
-import locales from '../../locales/en-US'
+import React from 'react';
+import './Book.css';
+import locales from '../../locales/en-US';
 
 /**
 * @description Represents a book
@@ -13,7 +13,7 @@ import locales from '../../locales/en-US'
 const Book = ({
   title, author, imageUrl, ...others
 }) => {
-  const { bookOption, bookShelf } = locales
+  const { bookOption, bookShelf } = locales;
   return (
     <div className="book">
       <div className="book-top">
@@ -43,7 +43,7 @@ const Book = ({
       <div className="book-title">{title}</div>
       <div className="book-authors">{author}</div>
     </div>
-  )
-}
+  );
+};
 
-export default Book
+export default Book;

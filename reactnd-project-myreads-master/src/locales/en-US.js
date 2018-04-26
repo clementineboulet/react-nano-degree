@@ -13,6 +13,6 @@ const locales = {
     close: 'Close',
     open: 'Add a book'
   }
-}
+};
 
-export default locales
+export default locales;

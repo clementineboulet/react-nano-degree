@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 // import * as BooksAPI from './API/BooksAPI'
-import locales from '../../locales/en-US'
-import './SearchPage.css'
+import locales from '../../locales/en-US';
+import './SearchPage.css';
 
 class SearchPage extends React.Component {
   state = {
@@ -38,8 +38,8 @@ class SearchPage extends React.Component {
           <ol className="books-grid"></ol>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default SearchPage
+export default SearchPage;

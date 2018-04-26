@@ -37,8 +37,8 @@ class BooksApp extends React.Component {
           render={() => (<SearchPage shelves={shelves}/>)}
         />
       </div>
-    )
+    );
   }
 }
 
-export default BooksApp
+export default BooksApp;

@@ -16,7 +16,8 @@
       "error",
       { "ignoreComments": true }
     ],
-    "no-extra-semi": "error"
+    "array-callback-return": 0,
+    "semi": ["error", "always"]
   },
   "globals": {
     "document": true

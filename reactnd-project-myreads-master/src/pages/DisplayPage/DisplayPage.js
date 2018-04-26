@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 // import * as BooksAPI from './API/BooksAPI'
-import './DisplayPage.css'
+import './DisplayPage.css';
 import Bookshelf from '../../components/Bookshelf';
 import locales from '../../locales/en-US';
 
@@ -49,8 +49,8 @@ class DisplayPage extends React.Component {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default DisplayPage
+export default DisplayPage;

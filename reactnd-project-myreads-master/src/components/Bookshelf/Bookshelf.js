@@ -1,5 +1,5 @@
-import React from 'react'
-import './Bookshelf.css'
+import React from 'react';
+import './Bookshelf.css';
 import Book from '../Book';
 
 /**
@@ -36,8 +36,8 @@ class BookShelf extends React.Component {
         </ol>
       </div>
     </div>
-    )
+    );
   }
 }
 
-export default BookShelf
+export default BookShelf;
