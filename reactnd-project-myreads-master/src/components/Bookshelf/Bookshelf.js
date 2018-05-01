@@ -5,8 +5,10 @@ import Book from '../Book';
 /**
 * @description Represents a book
 * @constructor
-* @param {array} bookList - the list of books
+* @param {array} bookList - the list of books id in the shelf
 * @param {string} title - the name of the shelf
+* @param {object} reference - the books detail that are on shelves
+* @param {function} updateBookToShelf - The function that update the shelf the book should be on
 */
 
 class BookShelf extends React.Component {
@@ -20,18 +22,19 @@ class BookShelf extends React.Component {
   }
 
   render() {
-    const { bookList, title } = this.props;
+    const { bookList, reference, title, updateBookToShelf } = this.props;
     return (
       <div className="bookshelf">
       <h2 className="bookshelf-title">{title}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
           {
-            bookList && bookList.map((book, index) => (
-              <li key={index}>
-                <Book {...book} />
-              </li>
-            ))
+            bookList && bookList.map((id, index) => {
+              const book = reference[id];
+              return (<li key={index}>
+                <Book {...book} updateBookToShelf={updateBookToShelf} />
+              </li>);
+            })
           }
         </ol>
       </div>

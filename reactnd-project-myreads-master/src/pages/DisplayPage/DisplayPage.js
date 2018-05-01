@@ -9,6 +9,8 @@ import locales from '../../locales/en-US';
 * @description Represents a book
 * @constructor
 * @param {object} shelves - the shelves object, with their respective books inside
+* @param {object} bookList - the list of books that are on shelves
+* @param {function} updateBookToShelf - The function that update the shelf the book should be on
 */
 
 class DisplayPage extends React.Component {
@@ -23,7 +25,7 @@ class DisplayPage extends React.Component {
   }
 
   render() {
-    const { shelves } = this.props;
+    const { shelves, bookList, updateBookToShelf } = this.props;
     const { bookShelf, search } = locales;
     return (
       <div className="list-books">
@@ -37,7 +39,9 @@ class DisplayPage extends React.Component {
                 <Bookshelf
                   key={shelfKey}
                   bookList={shelves[shelfKey]}
+                  reference={bookList}
                   title={bookShelf[shelfKey]}
+                  updateBookToShelf={updateBookToShelf}
                 />
               ))
             }

@@ -8,6 +8,7 @@ const locales = {
     read: 'Read',
     none: 'None'
   },
+  emptyShelfKey: 'none',
   search: {
     placeholder: 'Search by title or author',
     close: 'Close',
