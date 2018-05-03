@@ -28,17 +28,29 @@ class BooksApp extends React.Component {
     bookList[book.id] = book;
   };
 
-  addBookToList = ({ id, book }) => {
-    const { bookList } = this.state;
+  addBookToList = ({ id, book, bookList }) => {
     bookList[id] = book;
-    this.setState({ bookList });
+    return bookList;
+  };
+
+  removeBookToList = ({ id, book, bookList }) => {
+    if (bookList[id]) delete bookList[id];
+    return bookList;
   };
 
   updateBookToShelf = ({ book, shelf }) => {
     const { bookList } = this.state;
-    if (bookList[book.id]) this.addBookToList({ id: book.id, book });
+
+    if (!bookList[book.id]) {
+      book.shelf = shelf;
+      this.addBookToList({ id: book.id, book, bookList });
+    } else if (shelf === locales.emptyShelfKey) {
+      this.removeBookToList({ id: book.id, book, bookList });
+    } else {
+      bookList[book.id].shelf = shelf;
+    }
     const promise = new Promise((resolve, reject) => (resolve(BooksAPI.update(book, shelf))));
-    return promise.then(shelves => (this.setState({ shelves })));
+    return promise.then(shelves => (this.setState({ shelves, bookList })));
   };
 
   getBooksInShelves = (shelves, bookList) => {
@@ -71,6 +83,7 @@ class BooksApp extends React.Component {
           render={() => (
             <SearchPage
               updateBookToShelf={this.updateBookToShelf}
+              bookList={bookList}
             />)}
         />
       </div>

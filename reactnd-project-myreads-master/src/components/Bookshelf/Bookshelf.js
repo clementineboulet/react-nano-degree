@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Bookshelf.css';
 import Book from '../Book';
 
 /**
-* @description Represents a book
+* @description Represents a book shelf
 * @constructor
 * @param {array} bookList - the list of books id in the shelf
 * @param {string} title - the name of the shelf
@@ -42,5 +43,12 @@ class BookShelf extends React.Component {
     );
   }
 }
+
+BookShelf.propTypes = {
+  title: PropTypes.string.isRequired,
+  reference: PropTypes.object.isRequired,
+  bookList: PropTypes.array.isRequired,
+  updateBookToShelf: PropTypes.func.isRequired,
+};
 
 export default BookShelf;
