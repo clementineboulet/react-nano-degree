@@ -12,37 +12,28 @@ import Book from '../Book';
 * @param {function} updateBookToShelf - The function that update the shelf the book should be on
 */
 
-class BookShelf extends React.Component {
-  state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-  }
 
-  render() {
-    const { bookList, reference, title, updateBookToShelf } = this.props;
-    return (
-      <div className="bookshelf">
-      <h2 className="bookshelf-title">{title}</h2>
-      <div className="bookshelf-books">
-        <ol className="books-grid">
-          {
-            bookList && bookList.map((id, index) => {
-              const book = reference[id];
-              return (<li key={index}>
-                <Book {...book} updateBookToShelf={updateBookToShelf} />
-              </li>);
-            })
-          }
-        </ol>
-      </div>
+const BookShelf = ({
+  bookList, reference, title, updateBookToShelf,
+}) => {
+  return (
+    <div className="bookshelf">
+    <h2 className="bookshelf-title">{title}</h2>
+    <div className="bookshelf-books">
+      <ol className="books-grid">
+        {
+          bookList && bookList.map((id, index) => {
+            const book = reference[id];
+            return (<li key={index}>
+              <Book {...book} updateBookToShelf={updateBookToShelf} />
+            </li>);
+          })
+        }
+      </ol>
     </div>
-    );
-  }
-}
+  </div>
+  );
+};
 
 BookShelf.propTypes = {
   title: PropTypes.string.isRequired,

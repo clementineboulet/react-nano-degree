@@ -18,6 +18,10 @@ class SearchPage extends React.Component {
     isError: false,
   }
 
+  /**
+  * @description search book
+  * @param {string} book query - it can be a author or a title
+  */
   searchBook = (query) => {
     const promise = new Promise((resolve, reject) => (resolve(BooksAPI.search(query))));
     return promise.then(books => (
@@ -26,11 +30,6 @@ class SearchPage extends React.Component {
         this.setState({ books, isError: false })
     ));
   };
-
-  findShelf = (book) => {
-    const { bookList } = this.props;
-    return book && bookList[book.id] ? book.shelf = bookList[book.id].shelf : null;
-  }
 
   render() {
     const { placeholder, close } = locales.search;

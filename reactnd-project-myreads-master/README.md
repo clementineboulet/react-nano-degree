@@ -1,8 +1,9 @@
 # MyReads Project
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+This is Clementine Boulet's project for the final assessment project for Udacity's React Fundamentals course. I used the static example of the CSS and HTML markup template provided, and customized it to make it work using basic react and routers code. The app.js file is conserving the state of the app during the user's time on the page. It manage the state of the router and render the apropriate page depending of the route of chosen by the user.
+I decided to reuse codes by creating 2 components, Book and Bookshelf, that takes care of managing and displaying each book/bookshelf, and be easily reusable inside the 2 pages, the main (DisplayPage) and the search (Searchpage) pages.
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+
 
 ## TL;DR
 
@@ -21,19 +22,38 @@ To get started developing right away:
 │   ├── favicon.ico # React Icon, You may change if you wish.
 │   └── index.html # DO NOT MODIFY
 └── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
+    ├── App.css # Styles for the general app container.
+    ├── App.js # This is the root of the app. manage the state of the app and which component to render depending of the route of the application.
     ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
+    ├── API
+    │   ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
+    ├── components
+    │   ├── Book
+    │   │   ├── Book.css # The Styling sheet of the Book.
+    │   │   ├── Book.js # A JavaScript file that codes the behavior and the HTML of the Book component
+    │   │   └── index.js # A Javascript file that facilite the exportation of the Book.js file
+    │   └── Bookshelf
+    │       ├── Bookshelf.css # The Styling sheet of the Bookshelf.
+    │       ├── Bookshelf.js # A JavaScript file that codes the behavior and the HTML of the Bookshelf component
+    │       └── index.js # A Javascript file that facilite the exportation of the Bookshelf.js file
     ├── icons # Helpful images for your app. Use at your discretion.
     │   ├── add.svg
     │   ├── arrow-back.svg
     │   └── arrow-drop-down.svg
+    ├── locales
+    │   └──  en-US.js # A JavaScript constant files that list of the common strings of the application, for easy language exportation.
+    ├── pages
+    │   ├── DisplayPage
+    │   │   ├── DisplayPage.css # The Styling sheet of the Main Page.
+    │   │   ├── DisplayPage.js # A JavaScript file that codes the behavior and the HTML of the Main page
+    │   │   └── index.js # A Javascript file that facilite the exportation of the DisplayPage.js file
+    │   └── SearchPage
+    │       ├── SearchPage.css # The Styling sheet of the SearchPage.
+    │       ├── SearchPage.js # A JavaScript file that codes the behavior and the HTML of the search page.
+    │       └── index.js # A Javascript file that facilite the exportation of SearchPage.js 
     ├── index.css # Global styles. You probably won't need to change anything here.
     └── index.js # You should not need to modify this file. It is used for DOM rendering only.
 ```
-
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
 
 ## Backend Server
 
