@@ -16,6 +16,7 @@ class SearchPage extends React.Component {
   state = {
     books: {},
     isError: false,
+    query: '',
   }
 
   /**
@@ -23,12 +24,14 @@ class SearchPage extends React.Component {
   * @param {string} book query - it can be a author or a title
   */
   searchBook = (query) => {
-    const promise = new Promise((resolve, reject) => (resolve(BooksAPI.search(query))));
-    return promise.then(books => (
-      books && books.error ?
-        this.setState({isError: true}) :
-        this.setState({ books, isError: false })
-    ));
+    if (!this.state.query.includes(query)) {
+      const promise = new Promise((resolve, reject) => (resolve(BooksAPI.search(query))));
+      return promise.then(books => (
+        books && books.error ?
+          this.setState({isError: true}) :
+          this.setState({ books, isError: false, query: query })
+      ));
+    }
   };
 
   render() {
