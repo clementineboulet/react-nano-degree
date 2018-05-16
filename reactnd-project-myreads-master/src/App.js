@@ -12,7 +12,7 @@ class BooksApp extends React.Component {
     bookList: {},
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     const { bookShelf, emptyShelfKey } = locales;
     const shelves = {};
     const bookList = {};
