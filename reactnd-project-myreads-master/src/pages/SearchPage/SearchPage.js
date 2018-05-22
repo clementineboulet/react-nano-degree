@@ -24,14 +24,14 @@ class SearchPage extends React.Component {
   * @param {string} book query - it can be a author or a title
   */
   searchBook = (query) => {
-    if (!this.state.query.includes(query)) {
-      const promise = new Promise((resolve, reject) => (resolve(BooksAPI.search(query))));
-      return promise.then(books => (
-        books && books.error ?
+    const promise = new Promise((resolve, reject) => (resolve(BooksAPI.search(query))));
+    return promise.then(books => (
+      !books || (books && books.error) ?
+        !books ?
+          this.setState({books: {}, isError: false, query: query}) :
           this.setState({isError: true}) :
-          this.setState({ books, isError: false, query: query })
-      ));
-    }
+        this.setState({ books, isError: false, query: query })
+    ));
   };
 
   render() {
@@ -43,7 +43,7 @@ class SearchPage extends React.Component {
         <div className="search-books-bar">
           <Link className="close-search" to="/">{close}</Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder={placeholder} onChange={e => (e.target.value && this.searchBook(e.target.value))}/>
+            <input type="text" placeholder={placeholder} onChange={e => (this.searchBook(e.target.value))}/>
           </div>
         </div>
         <div className="search-books-results">
