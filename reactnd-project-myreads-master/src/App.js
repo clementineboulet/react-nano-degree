@@ -1,9 +1,10 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import * as BooksAPI from './API/BooksAPI';
 import './App.css';
 import SearchPage from './pages/SearchPage';
 import DisplayPage from './pages/DisplayPage';
+import Error from './pages/Error';
 import locales from './locales/en-US';
 
 class BooksApp extends React.Component {
@@ -98,24 +99,29 @@ class BooksApp extends React.Component {
     const { shelves, bookList } = this.state;
     return (
       <div className="app">
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <DisplayPage
-              shelves={shelves}
-              bookList={bookList}
-              updateBookToShelf={this.updateBookToShelf}
-            />)}
-        />
-        <Route
-          path="/search"
-          render={() => (
-            <SearchPage
-              updateBookToShelf={this.updateBookToShelf}
-              bookList={bookList}
-            />)}
-        />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <DisplayPage
+                shelves={shelves}
+                bookList={bookList}
+                updateBookToShelf={this.updateBookToShelf}
+              />)}
+          />
+          <Route
+            path="/search"
+            render={() => (
+              <SearchPage
+                updateBookToShelf={this.updateBookToShelf}
+                bookList={bookList}
+              />)}
+          />
+          <Route
+            component={Error}
+          />
+          </Switch>
       </div>
     );
   }

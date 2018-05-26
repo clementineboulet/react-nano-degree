@@ -32,7 +32,8 @@ const Book = ({
         <div
           className="book-cover"
           style={{
-            backgroundImage: `url(${imageLinks && imageLinks.smallThumbnail})`
+            backgroundImage: `url(${imageLinks && imageLinks.smallThumbnail ?
+              imageLinks.smallThumbnail : 'http://via.placeholder.com/128x193'})`
           }}
         />
         <div className="book-shelf-changer">

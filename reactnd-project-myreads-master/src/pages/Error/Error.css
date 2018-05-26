@@ -1,0 +1,32 @@
+.error-title {
+  padding: 10px 0;
+  background: #2e7c31;
+  text-align: center;
+}
+.error-title h1 {
+  font-weight: 400;
+  margin: 0;
+  color: white;
+}
+
+.error-body {
+  padding-top: 80px;
+  text-align: center;
+}
+
+.redirect-home,
+.redirect-search {
+  padding-top: 50px;
+}
+
+.redirect-home a,
+.redirect-search a {
+  background: #2e7c31;
+  color: white;
+  padding: 8px 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 3px;
+  text-decoration: none;
+  max-width: 120px;
+}
