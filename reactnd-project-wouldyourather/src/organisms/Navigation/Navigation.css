@@ -1,0 +1,27 @@
+.navigation {
+  display: flex;
+  background-color: #F5F5F5;
+  height: 100%;
+}
+
+.navigation a,
+.navigation .logout {
+  width: 25%;
+}
+
+.navigation a:hover,
+.navigation .logout:hover {
+  background-color: #FFF;
+}
+
+.navigation a {
+  font-size: 20px;
+  text-decoration: none;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.navigation .logout {
+  margin: 10px 0;
+}

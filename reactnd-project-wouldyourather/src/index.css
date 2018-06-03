@@ -1,0 +1,30 @@
+/*
+FONTS: 
+for the polls
+  font-family: 'Indie Flower', cursive;
+for the rest
+  font-family: 'Lato', sans-serif;
+
+COLORS:
+Red: #F13F55
+Green: #03C5AE
+Black: #000000
+Light grey: #F5F5F5
+darker grey: #D6D6D6
+
+*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #000;
+  padding: 30px;
+}

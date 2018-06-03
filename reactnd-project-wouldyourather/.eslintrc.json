@@ -1,0 +1,38 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "standard",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": 2,
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/default-props-match-prop-types": 2,
+    "react/prefer-es6-class": 1,
+    "react/prop-types": 1,
+    "no-trailing-spaces": [
+      "error",
+      { "ignoreComments": true }
+    ],
+    "array-callback-return": 0,
+    "semi": ["error", "always"]
+  },
+  "globals": {
+    "document": true
+  },
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/resolve": {
+      "moduleDirectory": ["node_modules", "src"],
+      "babel-module": {}
+    }
+  },
+  "plugins": [
+    "react"
+  ],
+  "env": {
+    "jest": true
+  }
+}

@@ -1,0 +1,4 @@
+node_modules/
+src/api_data
+src/index.js
+src/registerServiceWorker.js
