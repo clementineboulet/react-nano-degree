@@ -3,7 +3,10 @@ import {
   LOG_IN,
   LOG_OUT,
   SET_USERS,
-  SET_POLLS
+  SET_POLLS,
+  ANSWER_SAVED,
+  POLL_SAVED,
+  REFRESH_USER
 } from './actions';
 
 // {
@@ -18,6 +21,11 @@ const initLoginstore = {
   allUsers: {}
 };
 
+const refreshUser = (store) => {
+  const userId = store.loggedInUser.id;
+  return Object.assign({}, store, {loggedInUser: store.allUsers[userId]});
+};
+
 function login(store = initLoginstore, action) {
   switch (action.type) {
     case LOG_IN:
@@ -26,6 +34,8 @@ function login(store = initLoginstore, action) {
       return Object.assign({}, store, {loggedInUser: null});
     case SET_USERS:
       return Object.assign({}, store, {allUsers: action.allUsers});
+    case REFRESH_USER:
+      return refreshUser(store);
     default:
       return store;
   }
@@ -34,7 +44,10 @@ function login(store = initLoginstore, action) {
 function polls(store = {}, action) {
   switch (action.type) {
     case SET_POLLS:
-      return Object.assign({}, store, {allPolls: action.questions});
+      return Object.assign({}, store, {allPolls: action.questions, update: false});
+    case ANSWER_SAVED:
+    case POLL_SAVED :
+      return Object.assign({}, store, {update: true});
     default:
       return store;
   }

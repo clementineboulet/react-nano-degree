@@ -35,6 +35,13 @@ class PollApp extends Component {
                   />)}
               />
               <Route
+                path="/question/:question_id"
+                render={() => (
+                  <PollsPage
+                    seeDetails
+                  />)}
+              />
+              <Route
                 path="/leaderboard"
                 component={LeaderBoard}
               />

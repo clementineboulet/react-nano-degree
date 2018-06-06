@@ -20,6 +20,6 @@ const Navigation = () => {
       <Logout />
     </div>
   );
-}
+};
 
 export default Navigation;

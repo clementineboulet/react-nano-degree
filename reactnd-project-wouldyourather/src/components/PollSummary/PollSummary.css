@@ -1,0 +1,54 @@
+.summary {
+  display: flex;
+  justify-content: center;
+}
+
+.poll-tab {
+
+}
+
+.poll-tab .title {
+  font-size: 20px;
+  background-color: #5f5f5f;
+  color: #fff;
+  display: flex;
+  margin: 0 10px;
+}
+
+.poll-tab .title div {
+  padding: 15px 0;
+  cursor: pointer;
+}
+
+.poll-tab .title .unanswered {
+  margin-right: 20px;
+}
+
+.poll-tab .title div:hover {
+  border-bottom: 5px solid rgba(3, 197, 174, 0.459);
+}
+
+.poll-tab .title .show,
+.poll-tab .title .show:hover {
+  border-bottom: 5px solid #03C5AE;
+}
+
+.poll-tab .results {
+  min-width: 450px;
+}
+
+.poll-tab .results .poll-list {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s ease-in 0.8s, opacity 0.8s ease-in;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.poll-tab .results .show {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+  position: static;
+}

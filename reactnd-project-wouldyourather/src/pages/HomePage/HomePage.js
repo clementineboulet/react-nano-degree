@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomePage.css';
-import { getPolls } from '../../store/actions';
+import { updatePollResults, getPolls } from '../../store/actions';
 import locales from '../../locales/en-US';
 import PollSummary from '../../components/PollSummary/PollSummary';
 
@@ -12,20 +12,39 @@ import PollSummary from '../../components/PollSummary/PollSummary';
 */
 
 class HomePage extends Component {
+  state = {
+    updated: false
+  }
   componentDidMount() {
     this.props.getPollCards();
   }
 
+  componentDidUpdate () {
+    const { update, updateResults } = this.props;
+    const { updated } = this.state;
+    if (update && !updated) {
+      updateResults();
+      this.setState({updated: true});
+      console.log('update', 'getPollCards');
+    }
+
+    if (!update && updated){
+      this.setState({updated: false});
+      console.log('!update', 'updated');
+    }
+  }
+
   render() {
-    const { user, polls } = this.props;
+    const { user, polls, update } = this.props;
     const { homepage } = locales;
+    console.log('home user', user);
     return (
       <div className="home">
         <div className="greetings">
           {`${homepage.greetings} ${user.name}!`}
         </div>
         <div className="pollSummary">
-          <PollSummary polls={polls} answeredPollId={Object.keys(user.answers)}/>
+          <PollSummary resetResults={update && !this.state.updated} polls={polls} answeredPollId={Object.keys(user.answers)} />
         </div>
       </div>
     );
@@ -34,11 +53,13 @@ class HomePage extends Component {
 
 const mapStateToProps = state => ({
   user: state.login.loggedInUser,
-  polls: state.polls.allPolls
+  polls: state.polls.allPolls,
+  update: state.polls.update
 });
 
 const mapDispatchToProps = dispatch => ({
-  getPollCards: () => dispatch(getPolls())
+  getPollCards: () => dispatch(getPolls()),
+  updateResults: () => dispatch(updatePollResults())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

@@ -1,28 +1,36 @@
 export default {
   buttons: {
-    sumbit: 'Submit',
+    submit: 'Submit',
     cancel: 'Cancel'
   },
   poll: {
     question: 'Would you rather...?',
+    or: 'or',
     see_details: 'See more Details',
     show_poll: 'Show Poll',
     details: {
+      title: 'Poll #',
+      madeBy: 'made by',
       voted: 'users voted for it',
       percentage: '% of votes'
     },
+    options: {
+      option_A: 'optionOne',
+      option_B: 'optionTwo',
+    },
     create: {
+      title: 'New poll',
       option_A: 'Option A:',
       option_B: 'Option B:',
-      or: 'or'
     }
   },
   homepage: {
     greetings: 'Welcome',
     poll_tab: {
-        answered: 'Answered',
         unanswered: 'Unanswered',
-    }
+        answered: 'Answered'
+    },
+    default: 'unanswered'
   },
   default_user: {
     default_name: 'Anonymous',
