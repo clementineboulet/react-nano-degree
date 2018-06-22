@@ -82,6 +82,7 @@ class PollSummary extends Component {
               >
                 {
                   results[key]
+                    .sort((a, b) => (b.timestamp - a.timestamp))
                     .map(poll => (
                       <PollCard key={poll.id} poll={poll} answered={this.filterFunction({result: true, key})}/>
                     ))
