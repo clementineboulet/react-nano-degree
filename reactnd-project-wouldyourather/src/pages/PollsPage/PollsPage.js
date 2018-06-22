@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './PollsPage.css';
 import { getPolls, sendPollAnswer, createNewPoll } from '../../store/actions';
 import PollCard from '../../components/PollCard';
@@ -26,7 +27,7 @@ class PollsPage extends Component {
   seePoll = () => {
     const { polls, user, getAllPolls } = this.props;
     const { id } = this.state;
-    console.log('polls', polls);
+
     if (id && polls && polls[id]) {
       const answered = user.answers[id] || false;
       return <PollCard poll={polls[id]} pollDetail answered={answered} img={user.avatar} submitPoll={this.submitPoll}/>;
@@ -87,6 +88,16 @@ const mapDispatchToProps = dispatch => ({
   sendAnswer: answer => dispatch(sendPollAnswer(answer)),
   toCreatePoll: poll => dispatch(createNewPoll(poll))
 });
+
+PollsPage.propTypes = {
+  user: PropTypes.object.isRequired,
+  polls: PropTypes.object.isRequired,
+  getAllPolls: PropTypes.func.isRequired,
+  sendAnswer: PropTypes.func.isRequired,
+  toCreatePoll: PropTypes.func.isRequired,
+  location: PropTypes.object,
+  createPoll: PropTypes.bool
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PollsPage));
 

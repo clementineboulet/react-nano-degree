@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './Logout.css';
 import { logOut } from '../../store/actions';
 import locales from '../../locales/en-US';
@@ -31,5 +32,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   userLogOut: () => dispatch(logOut()),
 });
+
+Logout.propTypes = {
+  user: PropTypes.object.isRequired,
+  userLogOut: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Logout);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './HomePage.css';
 import { updatePollResults, getPolls } from '../../store/actions';
 import locales from '../../locales/en-US';
@@ -25,19 +26,17 @@ class HomePage extends Component {
     if (update && !updated) {
       updateResults();
       this.setState({updated: true});
-      console.log('update', 'getPollCards');
     }
 
     if (!update && updated){
       this.setState({updated: false});
-      console.log('!update', 'updated');
     }
   }
 
   render() {
     const { user, polls, update } = this.props;
     const { homepage } = locales;
-    console.log('home user', user);
+
     return (
       <div className="home">
         <div className="greetings">
@@ -61,5 +60,13 @@ const mapDispatchToProps = dispatch => ({
   getPollCards: () => dispatch(getPolls()),
   updateResults: () => dispatch(updatePollResults())
 });
+
+HomePage.propTypes = {
+  user: PropTypes.object.isRequired,
+  polls: PropTypes.object.isRequired,
+  update: PropTypes.bool.isRequired,
+  getPollCards: PropTypes.func.isRequired,
+  updateResults: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

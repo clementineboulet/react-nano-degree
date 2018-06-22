@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Route, Switch, BrowserRouter as Router, } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './App.css';
 import HomePage from './pages/HomePage';
 import LeaderBoard from './pages/LeaderBoard';
@@ -8,7 +9,6 @@ import PollsPage from './pages/PollsPage';
 import ErrorPage from './pages/ErrorPage';
 import Login from './organisms/Login';
 import Navigation from './organisms/Navigation';
-import locales from './locales/en-US';
 import { getAllUsers } from './store/actions';
 
 class PollApp extends Component {
@@ -65,5 +65,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getUsers: () => dispatch(getAllUsers())
 });
+
+PollApp.propTypes = {
+  user: PropTypes.object,
+  getUsers: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PollApp);

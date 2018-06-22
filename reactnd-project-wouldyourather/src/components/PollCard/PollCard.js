@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import PollResults from '../PollResults';
 import './PollCard.css';
 import locales from '../../locales/en-US';
 
@@ -12,7 +14,7 @@ class PollCard extends Component {
   state = {
     selected: '',
     option_A: '',
-    option_B: ''
+    option_B: '',
   };
 
   setTypeOfButton = key => {
@@ -44,7 +46,7 @@ class PollCard extends Component {
     const { poll: poll_variables } = locales;
     const { createPoll, submitPoll } = this.props;
     const { selected, option_A, option_B } = this.state;
-    console.log(this.state);
+
     createPoll ?
       submitPoll({ optionOneText: option_A, optionTwoText: option_B }) :
       submitPoll(poll_variables.options[selected]);
@@ -118,9 +120,7 @@ class PollCard extends Component {
           <div className="details">
             {
               answered ?
-                <div className="see-results">
-                  Poll results
-                </div> :
+                <PollResults poll={poll} answered={answered}/> :
                 this.createSubmitButtons()
             }
           </div>
@@ -129,7 +129,7 @@ class PollCard extends Component {
         {
           !createPoll && !pollDetail &&
           <Link
-            className="link to-pol-detail"
+            className="link to-poll-detail"
             to={{pathname: `/question/${poll.id}`, state: {id: poll.id}}}>
             <span>
               {answered && poll_variables.see_details}
@@ -141,6 +141,15 @@ class PollCard extends Component {
       </div>
     );
   }
+}
+
+PollCard.propTypes = {
+  poll: PropTypes.object,
+  answered: PropTypes.string,
+  createPoll: PropTypes.bool,
+  submitPoll: PropTypes.func,
+  pollDetail: PropTypes.object,
+  img: PropTypes.string,
 };
 
 export default PollCard;

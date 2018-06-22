@@ -1,22 +1,33 @@
-import React, { Component } from 'react';
-import './PollsResults.css';
+import React from 'react';
+import PropTypes from 'prop-types';
+import './PollResults.css';
 import locales from '../../locales/en-US';
 
 /**
-* @description Error Page
+* @description Poll Results Component
 * @constructor
 */
 
-class PollsResults extends Component {
-  state={
-  };
-  render() {
+const PollResults = ({poll, answered}) => {
+  const { details, options } = locales.poll;
+  const nbPeople = poll[answered].votes.length;
+  let totalNbPeople = 0;
+  Object.values(options).map(option => totalNbPeople += poll[option].votes.length);
 
-    return (
-      <div className="results">
+  return (
+    <div className="poll-results">
+      <div className="title">Poll Details</div>
+      <div className="statistics">
+        <p><strong>{nbPeople}</strong>{nbPeople > 1 ? details.votedPlr : details.voted}</p>
+        <p><strong>{100*nbPeople/totalNbPeople}</strong>{details.percentage}</p>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default PollsResults;
+PollResults.propTypes = {
+  poll: PropTypes.object.isRequired,
+  answered: PropTypes.string.isRequired,
+};
+
+export default PollResults;

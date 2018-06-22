@@ -1,0 +1,12 @@
+.poll-results {
+  margin: 0 5vw 10px;
+  border-top: 2px solid #03C5AE;
+}
+.poll-results .statistics {
+  font-size: 16px;
+}
+
+strong {
+  font-family: 'Indie Flower', cursive;
+  font-size: 20px;
+}

@@ -11,8 +11,9 @@ export default {
     details: {
       title: 'Poll #',
       madeBy: 'made by',
-      voted: 'users voted for it',
-      percentage: '% of votes'
+      voted: ' person voted for that option',
+      votedPlr: ' persons voted for that option',
+      percentage: '% of the people who voted, have voted for that option'
     },
     options: {
       option_A: 'optionOne',
@@ -37,8 +38,9 @@ export default {
     default_img_url: 'https://static.thenounproject.com/png/213776-200.png'
   },
   leaderBoard: {
-    nb_asked: '# asked questions:',
-    nb_answered: '# answered questions:',
+    title: 'LeaderBoard',
+    nb_asked: '# asked questions: ',
+    nb_answered: '# answered questions: ',
   },
   navigation: {
     homepage: 'Home',

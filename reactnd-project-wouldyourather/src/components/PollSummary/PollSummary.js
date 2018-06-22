@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './PollSummary.css';
 import PollCard from '../PollCard';
 import locales from '../../locales/en-US';
@@ -92,6 +93,12 @@ class PollSummary extends Component {
       </div>
     );
   }
+}
+
+PollSummary.propTypes = {
+  polls: PropTypes.object.isRequired,
+  answeredPollId: PropTypes.string.isRequired,
+  resetResults: PropTypes.bool
 };
 
 export default PollSummary;

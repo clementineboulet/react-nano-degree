@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { logIn, getAllUsers } from '../../store/actions';
 import './Login.css';
 import locales from '../../locales/en-US';
@@ -19,7 +20,7 @@ class Login extends Component {
         </div>
         <div className="user-list">
           {
-            users && Object.values(users).length && Object.values(users).map(user => (
+            users && Object.values(users).length ? Object.values(users).map(user => (
               <button
                 className="user to-connect"
                 key={user.id}
@@ -27,7 +28,7 @@ class Login extends Component {
                 <img src={user.avatarURL || default_user.default_img_url}/>
                 <span>{user.name || default_user.default_name}</span>
               </button>
-            ))
+            )) : null
           }
         </div>
       </div>
@@ -43,5 +44,11 @@ const mapDispatchToProps = dispatch => ({
   userLogIn: user => dispatch(logIn(user)),
   getUsers: () => dispatch(getAllUsers())
 });
+
+Login.propTypes = {
+  users: PropTypes.object.isRequired,
+  userLogIn: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
