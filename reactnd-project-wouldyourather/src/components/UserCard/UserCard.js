@@ -4,8 +4,10 @@ import './UserCard.css';
 import locales from '../../locales/en-US';
 
 /**
-* @description Poll Results Component
+* @description The user card component
 * @constructor
+* @param {object} user - the user
+* @param {bool} isUser - if the user displayed is the current user
 */
 
 const UserCard = ({user, isUser}) => {

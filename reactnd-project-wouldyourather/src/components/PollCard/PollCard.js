@@ -6,8 +6,14 @@ import './PollCard.css';
 import locales from '../../locales/en-US';
 
 /**
-* @description Error Page
+* @description the Poll card - is used in the poll summary, in the poll detail or in create a new poll section
 * @constructor
+* @param {object} poll - the current poll
+* @param {string} answered - the user's answer to the poll
+* @param {string} img - the avatar of the user
+* @param {bool} pollDetail - is the poll in detail view
+* @param {bool} createPoll - if the user creates a new poll - false means the poll already exists
+* @param {func} submitPoll - submit the answer to the poll (new poll or answer to existing poll)
 */
 
 class PollCard extends Component {
@@ -17,6 +23,11 @@ class PollCard extends Component {
     option_B: '',
   };
 
+  /**
+  * @description set the class of the answer buttons depending of the type of poll card and the current state of the poll
+  * @param {string} key - the poll id
+  * @returns {string} the final class of the button
+  */
   setTypeOfButton = key => {
     const { answered, pollDetail } = this.props;
     const { poll: poll_variables } = locales;
@@ -35,6 +46,11 @@ class PollCard extends Component {
     return className;
   };
 
+  /**
+  * @description sets the behavior of the answer button depending of the type of poll:
+  * if the poll needs to be answered set the appropriate state, nothing otherwise
+  * @param {string} key - the poll id
+  */
   onButtonClick = key => {
     const { answered, pollDetail } = this.props;
     return answered || !pollDetail ?
@@ -42,6 +58,10 @@ class PollCard extends Component {
     this.setState({selected : key});
   }
 
+  /**
+  * @description submit the results of the poll depending of the type of poll -
+  * nothing happens if the poll is in the pollSummary
+  */
   submitPoll = () => {
     const { poll: poll_variables } = locales;
     const { createPoll, submitPoll } = this.props;
@@ -52,6 +72,9 @@ class PollCard extends Component {
       submitPoll(poll_variables.options[selected]);
   }
 
+  /**
+  * @description submit button creation
+  */
   createSubmitButtons = () => {
     const { buttons } = locales;
     return (
@@ -72,6 +95,11 @@ class PollCard extends Component {
     </div>);
   }
 
+  /**
+  * @description set the inputted value in the state
+  * @param {event} e - the event
+  * @param {string} key - the option id
+  */
   setInput = (e, key) => {
     let stateObj = {};
     stateObj[key] = e.target.value;
@@ -148,7 +176,7 @@ PollCard.propTypes = {
   answered: PropTypes.string,
   createPoll: PropTypes.bool,
   submitPoll: PropTypes.func,
-  pollDetail: PropTypes.object,
+  pollDetail: PropTypes.bool,
   img: PropTypes.string,
 };
 

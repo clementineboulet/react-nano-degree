@@ -11,6 +11,13 @@ import Login from './organisms/Login';
 import Navigation from './organisms/Navigation';
 import { getAllUsers } from './store/actions';
 
+/**
+* @description Represents a structure of the App with the different Routes
+* @constructor
+* @param {object} user - The logged in user
+* @param {func} getUsers - to get all of the possible users
+*/
+
 class PollApp extends Component {
   render() {
     const { user } = this.props;

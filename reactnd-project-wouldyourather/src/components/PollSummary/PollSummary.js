@@ -5,8 +5,11 @@ import PollCard from '../PollCard';
 import locales from '../../locales/en-US';
 
 /**
-* @description Error Page
+* @description the polls summary
 * @constructor
+* @param {object} polls - the polls list
+* @param {array} answeredPollId - the list of answered poll ids
+* @param {bool} resetResults - if the results need to be resetted
 */
 
 class PollSummary extends Component {
@@ -43,6 +46,12 @@ class PollSummary extends Component {
     }
   }
 
+  /**
+  * @description Filter results function
+  * @param {bool} results
+  * @param {string} key
+  * @returns {bool} results or its opposite depending of the key
+  */
   filterFunction = ({result, key}) => {
     if(key === 'answered') {
       return result;
@@ -50,10 +59,11 @@ class PollSummary extends Component {
     return !result;
   };
 
-  setSelected = (selected) => {
-    this.setState({selected});
-  }
-
+  /**
+  * @description return string depending if there is selection or not
+  * @param {string} key
+  * @returns {string} class name if the selection criteria is made
+  */
   showSelected = (key) => (key === this.state.selected ? ' show' :'');
 
   render() {
@@ -68,7 +78,7 @@ class PollSummary extends Component {
               <div
                 key={key}
                 className={`${key}${this.showSelected(key)}`}
-                onClick={() => this.setSelected(key)}
+                onClick={() => this.setState({selected: key})}
               >
                 {homepage.poll_tab[key]}
               </div>
@@ -98,7 +108,7 @@ class PollSummary extends Component {
 
 PollSummary.propTypes = {
   polls: PropTypes.object.isRequired,
-  answeredPollId: PropTypes.string.isRequired,
+  answeredPollId: PropTypes.array.isRequired,
   resetResults: PropTypes.bool
 };
 

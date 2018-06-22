@@ -8,8 +8,15 @@ import PollCard from '../../components/PollCard';
 import locales from '../../locales/en-US';
 
 /**
-* @description Error Page
+* @description Polls Page - can be for poll creation or for poll details
 * @constructor
+* @param {object} user - the active user
+* @param {object} polls - the polls list
+* @param {object} location - the url route of the page
+* @param {boolean} createPoll - if the poll is a type creation
+* @param {func} getAllPolls - to get the poll list
+* @param {func} sendAnswer - Send the poll answer to the back end
+* @param {func} toCreatePoll - Create a new poll by sending params to the back end
 */
 
 class PollsPage extends Component {
@@ -24,6 +31,11 @@ class PollsPage extends Component {
     });
   }
 
+  /**
+  * @description if the poll list exists and the current poll is in that list
+  * @returns the poll detail of that poll
+  * @description else make a new request to get the poll list
+  */
   seePoll = () => {
     const { polls, user, getAllPolls } = this.props;
     const { id } = this.state;
@@ -34,11 +46,18 @@ class PollsPage extends Component {
     }
 
     id && getAllPolls();
-    return null;
   }
 
+  /**
+  * @description Create a new poll
+  * @returns {JSX} JSX react component responsible for the display of the creation of a new poll 
+  */
   createNewPoll = () => (<PollCard createPoll submitPoll={this.submitPoll}/>);
 
+  /**
+  * @description Submit a poll answer, or the new created poll to the back end
+  * @param {object} answer - the answer to the poll in an object
+  */
   submitPoll = (answer) => {
     const { createPoll, sendAnswer, user, toCreatePoll } = this.props;
     if (createPoll && answer) {

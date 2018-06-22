@@ -5,6 +5,13 @@ import { logIn, getAllUsers } from '../../store/actions';
 import './Login.css';
 import locales from '../../locales/en-US';
 
+/**
+* @description Log in organism
+* @constructor
+* @param {object} users - the possible users list
+* @param {func} userLogIn - to log out
+* @param {func} getUsers - get the list of the users
+*/
 class Login extends Component {
   componentDidMount() {
     this.props.getUsers();

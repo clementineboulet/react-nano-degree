@@ -10,6 +10,10 @@ import PollSummary from '../../components/PollSummary/PollSummary';
 * @description Main Page Skeleton
 * @constructor
 * @param {object} user - the active user
+* @param {object} polls - the poll list
+* @param {boolean} update - if the poll list needs to be updated
+* @param {func} getPollCards - to get the poll list
+* @param {func} updateResults - refresh the users details and the poll list
 */
 
 class HomePage extends Component {

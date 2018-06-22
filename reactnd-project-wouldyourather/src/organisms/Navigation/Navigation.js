@@ -4,6 +4,11 @@ import './Navigation.css';
 import Logout from '../Logout';
 import locales from '../../locales/en-US';
 
+/**
+* @description Navigation bar
+* @constructor
+*/
+
 const Navigation = () => {
   const { navigation } = locales;
   return (

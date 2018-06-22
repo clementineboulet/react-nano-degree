@@ -7,8 +7,10 @@ import UserCard from '../../components/UserCard';
 import locales from '../../locales/en-US';
 
 /**
-* @description Error Page
+* @description Leaderboard Page
 * @constructor
+* @param {object} user - the active user
+* @param {object} users - the users list
 */
 
 const LeaderBoard = ({users, user}) => {

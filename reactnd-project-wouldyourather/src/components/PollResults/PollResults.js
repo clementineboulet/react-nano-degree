@@ -4,8 +4,10 @@ import './PollResults.css';
 import locales from '../../locales/en-US';
 
 /**
-* @description Poll Results Component
+* @description the Poll answers results component
 * @constructor
+* @param {object} poll - the current poll
+* @param {string} answered - the user's answer to the poll
 */
 
 const PollResults = ({poll, answered}) => {

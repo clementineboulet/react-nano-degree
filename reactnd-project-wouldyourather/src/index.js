@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import pollAppReducer from './store/reducers';
-import middleware from './store/middlewares';
 
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

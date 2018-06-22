@@ -5,6 +5,12 @@ import './Logout.css';
 import { logOut } from '../../store/actions';
 import locales from '../../locales/en-US';
 
+/**
+* @description Log out organism
+* @constructor
+* @param {object} user - the active user
+* @param {func} userLogOut - to log out
+*/
 
 const Logout = ({
   user, userLogOut
