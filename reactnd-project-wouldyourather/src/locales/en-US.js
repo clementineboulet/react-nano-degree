@@ -17,12 +17,16 @@ export default {
     },
     options: {
       option_A: 'optionOne',
-      option_B: 'optionTwo',
+      option_B: 'optionTwo'
+    },
+    reverse_options: {
+      optionOne: 'option_A',
+      optionTwo: 'option_B'
     },
     create: {
       title: 'New poll',
       option_A: 'Option A:',
-      option_B: 'Option B:',
+      option_B: 'Option B:'
     }
   },
   homepage: {
@@ -55,6 +59,7 @@ export default {
     logout_request: 'Logout'
   },
   error: {
-    main_error: '404 not found'
+    main_error: 'Bummer..!',
+    detail_error: 'We cannot find the page you are looking for...'
   }
 };

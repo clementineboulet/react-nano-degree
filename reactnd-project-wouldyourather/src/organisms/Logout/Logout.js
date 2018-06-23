@@ -18,7 +18,7 @@ const Logout = ({
   const { default_user, logout } = locales;
   return (
     <div className="logout">
-        <img src={user.avatarURL || default_user.default_img_url}/>
+        <img alt="avatar" src={user.avatarURL || default_user.default_img_url}/>
         <span>{user.name || default_user.default_name}</span>
         <button
           className="user to-disconnect"

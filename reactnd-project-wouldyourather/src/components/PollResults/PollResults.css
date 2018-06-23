@@ -1,12 +1,20 @@
 .poll-results {
   margin: 0 5vw 10px;
-  border-top: 2px solid #03C5AE;
+  border-top: 2px solid #D6D6D6;
 }
 .poll-results .statistics {
   font-size: 16px;
+  display: flex;
 }
 
-strong {
+.answered-option {
+  border: 2px solid #03C5AE;
+  border-radius: 10px;
+  padding-bottom: 10px;
+}
+
+strong,
+.statistics .title {
   font-family: 'Indie Flower', cursive;
   font-size: 20px;
 }

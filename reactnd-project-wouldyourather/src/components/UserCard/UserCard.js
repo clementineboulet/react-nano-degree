@@ -16,7 +16,7 @@ const UserCard = ({user, isUser}) => {
 
   return (
     <div className={`user-card${isUser ? ' is-user' : ''}`}>
-      <div className="title"><img className="" src={`${user.avatarURL ? user.avatarURL : default_user.default_img_url}`} />{user.name}</div>
+      <div className="title"><img alt="avatar" src={`${user.avatarURL ? user.avatarURL : default_user.default_img_url}`} />{user.name}</div>
       <div className="statistics">
         <p>{nb_asked}<strong>{user.questions.length}</strong></p>
         <p>{nb_answered}<strong>{Object.keys(user.answers).length}</strong></p>

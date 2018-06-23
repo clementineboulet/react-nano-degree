@@ -11,8 +11,7 @@ import locales from '../../locales/en-US';
 */
 
 const PollResults = ({poll, answered}) => {
-  const { details, options } = locales.poll;
-  const nbPeople = poll[answered].votes.length;
+  const { details, options, reverse_options, create } = locales.poll;
   let totalNbPeople = 0;
   Object.values(options).map(option => totalNbPeople += poll[option].votes.length);
 
@@ -20,8 +19,18 @@ const PollResults = ({poll, answered}) => {
     <div className="poll-results">
       <div className="title">Poll Details</div>
       <div className="statistics">
-        <p><strong>{nbPeople}</strong>{nbPeople > 1 ? details.votedPlr : details.voted}</p>
-        <p><strong>{100*nbPeople/totalNbPeople}</strong>{details.percentage}</p>
+      {
+        Object.values(options).map(option => {
+          const nbPeople = poll[option].votes.length;
+          return (
+            <div key={option} className={answered === option ? 'answered-option' : ''}>
+              <p className="title">{create[reverse_options[option]]}</p>
+              <p><strong>{nbPeople}</strong>{nbPeople > 1 ? details.votedPlr : details.voted}</p>
+              <p><strong>{100*nbPeople/totalNbPeople}</strong>{details.percentage}</p>
+            </div>
+          );
+        })
+      }
       </div>
     </div>
   );

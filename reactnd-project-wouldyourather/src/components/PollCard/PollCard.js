@@ -12,6 +12,7 @@ import locales from '../../locales/en-US';
 * @param {string} answered - the user's answer to the poll
 * @param {string} img - the avatar of the user
 * @param {bool} pollDetail - is the poll in detail view
+* @param {bool} isAnswered - did the user answer the poll
 * @param {bool} createPoll - if the user creates a new poll - false means the poll already exists
 * @param {func} submitPoll - submit the answer to the poll (new poll or answer to existing poll)
 */
@@ -52,8 +53,8 @@ class PollCard extends Component {
   * @param {string} key - the poll id
   */
   onButtonClick = key => {
-    const { answered, pollDetail } = this.props;
-    return answered || !pollDetail ?
+    const { answered, pollDetail, isAnswered } = this.props;
+    return answered || isAnswered || !pollDetail ?
     null :
     this.setState({selected : key});
   }
@@ -107,14 +108,14 @@ class PollCard extends Component {
   }
 
   render() {
-    const {poll, createPoll, pollDetail, answered, img} = this.props;
+    const {poll, createPoll, pollDetail, answered, img, isAnswered} = this.props;
     const { poll: poll_variables, default_user } = locales;
     const options = Object.keys(poll_variables.options);
 
     return (
       <div className="poll-card">
         <div className="poll-title">
-          { pollDetail && <img className="" src={`${img ? img : default_user.default_img_url}`} />}
+          { pollDetail && <img alt="avatar" src={`${img ? img : default_user.default_img_url}`} />}
           {poll_variables.question}
         </div>
         <div className="answers">
@@ -160,8 +161,8 @@ class PollCard extends Component {
             className="link to-poll-detail"
             to={{pathname: `/question/${poll.id}`, state: {id: poll.id}}}>
             <span>
-              {answered && poll_variables.see_details}
-              {!answered && poll_variables.show_poll}
+              {isAnswered && poll_variables.see_details}
+              {!isAnswered && poll_variables.show_poll}
             </span>
           </Link>
         }
@@ -174,6 +175,7 @@ class PollCard extends Component {
 PollCard.propTypes = {
   poll: PropTypes.object,
   answered: PropTypes.string,
+  isAnswered: PropTypes.bool,
   createPoll: PropTypes.bool,
   submitPoll: PropTypes.func,
   pollDetail: PropTypes.bool,

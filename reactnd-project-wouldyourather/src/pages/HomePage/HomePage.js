@@ -67,8 +67,8 @@ const mapDispatchToProps = dispatch => ({
 
 HomePage.propTypes = {
   user: PropTypes.object.isRequired,
-  polls: PropTypes.object.isRequired,
-  update: PropTypes.bool.isRequired,
+  polls: PropTypes.object,
+  update: PropTypes.bool,
   getPollCards: PropTypes.func.isRequired,
   updateResults: PropTypes.func.isRequired
 };

@@ -19,7 +19,7 @@ const LeaderBoard = ({users, user}) => {
   Object.keys(users).map(someUserKey => {
     const thisUser = users[someUserKey];
     const points = thisUser.questions.length + Object.keys(thisUser.answers).length;
-    reorderedUsers.push({key: someUserKey, value: points});
+    return reorderedUsers.push({key: someUserKey, value: points});
   });
   reorderedUsers.sort((userA, userB) => (userB.value - userA.value));
 

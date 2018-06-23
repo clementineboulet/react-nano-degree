@@ -94,7 +94,7 @@ class PollSummary extends Component {
                   results[key]
                     .sort((a, b) => (b.timestamp - a.timestamp))
                     .map(poll => (
-                      <PollCard key={poll.id} poll={poll} answered={this.filterFunction({result: true, key})}/>
+                      <PollCard key={poll.id} poll={poll} isAnswered={this.filterFunction({result: true, key})}/>
                     ))
                 }
               </div>
@@ -107,7 +107,7 @@ class PollSummary extends Component {
 }
 
 PollSummary.propTypes = {
-  polls: PropTypes.object.isRequired,
+  polls: PropTypes.object,
   answeredPollId: PropTypes.array.isRequired,
   resetResults: PropTypes.bool
 };

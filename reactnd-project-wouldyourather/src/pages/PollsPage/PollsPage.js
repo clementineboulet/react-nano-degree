@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import './PollsPage.css';
 import { getPolls, sendPollAnswer, createNewPoll } from '../../store/actions';
 import PollCard from '../../components/PollCard';
+import ErrorPage from '../ErrorPage';
 import locales from '../../locales/en-US';
 
 /**
@@ -37,15 +38,23 @@ class PollsPage extends Component {
   * @description else make a new request to get the poll list
   */
   seePoll = () => {
-    const { polls, user, getAllPolls } = this.props;
+    const { polls, user, getAllPolls, users } = this.props;
     const { id } = this.state;
 
     if (id && polls && polls[id]) {
-      const answered = user.answers[id] || false;
-      return <PollCard poll={polls[id]} pollDetail answered={answered} img={user.avatar} submitPoll={this.submitPoll}/>;
+      const answered = user.answers[id];
+      const isAnswered = !!user.answers[id];
+      return <PollCard
+        poll={polls[id]}
+        pollDetail
+        answered={answered}
+        isAnswered={isAnswered}
+        img={users[polls[id].author].avatarURL}
+        submitPoll={this.submitPoll}
+      />;
     }
 
-    id && getAllPolls();
+    id && !polls && getAllPolls();
   }
 
   /**
@@ -77,12 +86,16 @@ class PollsPage extends Component {
   }
 
   render() {
-    const { createPoll } = this.props;
+    const { createPoll, polls } = this.props;
     const { id, redirect } = this.state;
     const { poll: poll_variables } = locales;
 
     if (redirect) {
       return <Redirect to='/'/>;
+    }
+
+    if (id && polls && !polls[id]) {
+      return <ErrorPage/>;
     }
 
     return (
@@ -99,6 +112,7 @@ class PollsPage extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   user: state.login.loggedInUser,
+  users: state.login.allUsers,
   polls: state.polls.allPolls
 });
 
@@ -110,7 +124,8 @@ const mapDispatchToProps = dispatch => ({
 
 PollsPage.propTypes = {
   user: PropTypes.object.isRequired,
-  polls: PropTypes.object.isRequired,
+  users: PropTypes.object.isRequired,
+  polls: PropTypes.object,
   getAllPolls: PropTypes.func.isRequired,
   sendAnswer: PropTypes.func.isRequired,
   toCreatePoll: PropTypes.func.isRequired,

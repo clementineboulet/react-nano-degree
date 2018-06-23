@@ -1,0 +1,9 @@
+.error {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 30vh;
+}
+
+.error p {
+  padding: 10px 0;
+}

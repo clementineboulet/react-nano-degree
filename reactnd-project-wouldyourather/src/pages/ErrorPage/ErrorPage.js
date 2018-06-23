@@ -8,9 +8,11 @@ import locales from '../../locales/en-US';
 */
 
 const ErrorPage = () => {
+  const { main_error, detail_error } = locales.error;
   return (
     <div className="error">
-      {locales.error.main_error}
+      <p>{main_error}</p>
+      <p>{detail_error}</p>
     </div>
   );
 };
