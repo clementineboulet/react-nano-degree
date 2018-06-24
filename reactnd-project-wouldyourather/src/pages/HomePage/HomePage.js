@@ -5,6 +5,7 @@ import './HomePage.css';
 import { updatePollResults, getPolls } from '../../store/actions';
 import locales from '../../locales/en-US';
 import PollSummary from '../../components/PollSummary/PollSummary';
+import Spinner from '../../organisms/Spinner';
 
 /**
 * @description Main Page Skeleton
@@ -42,14 +43,16 @@ class HomePage extends Component {
     const { homepage } = locales;
 
     return (
-      <div className="home">
-        <div className="greetings">
-          {`${homepage.greetings} ${user.name}!`}
+      <Spinner>
+        <div className="home">
+          <div className="greetings">
+            {`${homepage.greetings} ${user.name}!`}
+          </div>
+          <div className="pollSummary">
+            <PollSummary resetResults={update && !this.state.updated} polls={polls} answeredPollId={Object.keys(user.answers)} />
+          </div>
         </div>
-        <div className="pollSummary">
-          <PollSummary resetResults={update && !this.state.updated} polls={polls} answeredPollId={Object.keys(user.answers)} />
-        </div>
-      </div>
+      </Spinner>
     );
   }
 }

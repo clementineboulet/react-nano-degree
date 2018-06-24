@@ -26,7 +26,7 @@ const PollResults = ({poll, answered}) => {
             <div key={option} className={answered === option ? 'answered-option' : ''}>
               <p className="title">{create[reverse_options[option]]}</p>
               <p><strong>{nbPeople}</strong>{nbPeople > 1 ? details.votedPlr : details.voted}</p>
-              <p><strong>{100*nbPeople/totalNbPeople}</strong>{details.percentage}</p>
+              <p><strong>{(100*nbPeople/totalNbPeople).toFixed(0)}</strong>{details.percentage}</p>
             </div>
           );
         })

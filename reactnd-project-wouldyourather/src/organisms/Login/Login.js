@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logIn, getAllUsers } from '../../store/actions';
 import './Login.css';
+import Spinner from '../Spinner';
 import locales from '../../locales/en-US';
 
 /**
@@ -22,23 +23,25 @@ class Login extends Component {
     const { login, default_user } = locales;
 
     return(
-      <div className="login">
-        <div className="header">{login.login_request}
+      <Spinner>
+        <div className="login">
+          <div className="header">{login.login_request}
+          </div>
+          <div className="user-list">
+            {
+              users && Object.values(users).length ? Object.values(users).map(user => (
+                <button
+                  className="user to-connect"
+                  key={user.id}
+                  onClick={() => userLogIn(user)}>
+                  <img alt="avatar" src={user.avatarURL || default_user.default_img_url}/>
+                  <span>{user.name || default_user.default_name}</span>
+                </button>
+              )) : null
+            }
+          </div>
         </div>
-        <div className="user-list">
-          {
-            users && Object.values(users).length ? Object.values(users).map(user => (
-              <button
-                className="user to-connect"
-                key={user.id}
-                onClick={() => userLogIn(user)}>
-                <img alt="avatar" src={user.avatarURL || default_user.default_img_url}/>
-                <span>{user.name || default_user.default_name}</span>
-              </button>
-            )) : null
-          }
-        </div>
-      </div>
+      </Spinner>
     );
   }
 }
@@ -55,7 +58,7 @@ const mapDispatchToProps = dispatch => ({
 Login.propTypes = {
   users: PropTypes.object.isRequired,
   userLogIn: PropTypes.func.isRequired,
-  getUsers: PropTypes.func.isRequired
+  getUsers: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

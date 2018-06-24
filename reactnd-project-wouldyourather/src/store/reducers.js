@@ -6,7 +6,9 @@ import {
   SET_POLLS,
   ANSWER_SAVED,
   POLL_SAVED,
-  REFRESH_USER
+  REFRESH_USER,
+  LOADING,
+  LOADED,
 } from './actions';
 
 // {
@@ -53,7 +55,19 @@ function polls(store = {}, action) {
   }
 }
 
+function loading(store = {}, action) {
+  switch (action.type) {
+    case LOADING:
+      return Object.assign({}, store, {loading: true});
+    case LOADED:
+      return Object.assign({}, store, {loading: false});
+    default:
+      return store;
+  }
+}
+
 export default combineReducers({
   login,
-  polls
+  polls,
+  loading,
 });

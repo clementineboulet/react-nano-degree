@@ -6,6 +6,7 @@ import './PollsPage.css';
 import { getPolls, sendPollAnswer, createNewPoll } from '../../store/actions';
 import PollCard from '../../components/PollCard';
 import ErrorPage from '../ErrorPage';
+import Spinner from '../../organisms/Spinner';
 import locales from '../../locales/en-US';
 
 /**
@@ -99,13 +100,15 @@ class PollsPage extends Component {
     }
 
     return (
-      <div className="poll-page">
-        <div className="title">
-          {createPoll ? poll_variables.create.title : `${poll_variables.details.title}${id}`}
+      <Spinner>
+        <div className="poll-page">
+          <div className="title">
+            {createPoll ? poll_variables.create.title : `${poll_variables.details.title}${id}`}
+          </div>
+          {createPoll ?
+            this.createNewPoll() : this.seePoll()}
         </div>
-        {createPoll ?
-          this.createNewPoll() : this.seePoll()}
-      </div>
+      </Spinner>
     );
   }
 }

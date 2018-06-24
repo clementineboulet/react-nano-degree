@@ -6,7 +6,7 @@ I've used the [Create React App](https://github.com/facebook/create-react-app) t
 
 Since the goal was to use Redux into managing the state, all of the actions and reducers can be found in the /store folder. I used Redux Thunk to connect the store to the fake API.
 
-the App.js file contains the Routing structure. The /organisms folder contains the navigation bar and the login/logout components, that are like "super components" as they need connection to the store or are connected to the router.
+the App.js file contains the Routing structure. The /organisms folder contains the navigation bar, the login/logout components, and the spinner components, that are like "super components" as they need connection to the store or are connected to the router.
 The pages can be found in the /pages folder:
   - HomePage.js that contains the summary of the answered/unasnwered polls.
   - LeaderBoard.js, that shows the ranking of the users depending of the answering/asking proactivities
