@@ -27,7 +27,7 @@ export const refreshUser = () => ({ type: REFRESH_USER });
 
 export const getAllUsers = () => dispatch => {
   dispatch(loading());
-  _getUsers().then(allUsers => {
+  return _getUsers().then(allUsers => {
     dispatch(setAllUsers(allUsers));
     dispatch(loaded());
   });
@@ -61,9 +61,9 @@ export const createNewPoll = poll => dispatch => (
 
 export const updatePollResults = () => dispatch => {
   dispatch(getPolls());
-  dispatch(getAllUsers()).then(() => (
+  dispatch(getAllUsers()).then(() =>
     dispatch(refreshUser())
-  ));
+  );
 };
 
 /*LOADING ACTION CREATORS*/
