@@ -3,19 +3,17 @@ import { ADD_DECK, ADD_CARD, NEW_QUIZ, ADD_ANSWER } from './actions'
 import initState from './initState'
 
 function decks (state = initState, action) {
-  console.log(Object.values(state))
+  console.log(action, state)
   switch (action.type) {
     case ADD_DECK :
       return {
         ...state,
-        ...action.deck,
+        ...action.deck
       }
     case ADD_CARD :
-      const newState = Object.create({}, state);
+      const newState = {...state}
       newState[action.deckId].cards.push(action.card)
-      return {
-        ...newState
-      }
+      return newState
     default :
       return state
   }

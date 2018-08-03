@@ -1,23 +1,48 @@
-import React, { PureComponent } from 'react'
-import { Text, View, TextInput, KeyboardAvoidingView, StyleSheet } from 'react-native';
+import React, { Component } from 'react'
+import { Text, View, TextInput, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { green, white, beige } from '../utils/colors'
 import commonStyles from '../utils/commonStyles'
 import Button from '../components/Button'
+import { addCard } from '../redux/actions'
 
-class AddCard extends PureComponent {
+
+class AddCard extends Component {
+  state = {
+    question: '',
+    answer: ''
+  }
+  addCardToDeck = () => {
+    console.log('Add card to deck!!', this.props)
+    const { navigation, addCardToDeck } = this.props
+    const deckId = navigation.state.params.id
+    
+    //navigation.dispatch(NavigationActions.back())
+    navigation.goBack()
+    addCardToDeck({card: this.state, deckId})
+  }
+
   render() {
-    const { deck } = this.props
     return (
       <View style={{backgroundColor: beige, flex: 1}}>
         <KeyboardAvoidingView behavior="padding" enabled style={[{backgroundColor: white, flex: 1}, commonStyles.deckCard]}>
-          <Text style={commonStyles.deckTitle}>Add a card</Text>
           <Text style={commonStyles.deckDescription}>Question</Text>
-          <TextInput style={styles.textInput}/>
+          <TextInput
+            style={commonStyles.textInput}
+            placeholder="Type here your question"
+            onChangeText={(question) => this.setState({question})}
+            returnKeyType="next"
+          />
           <Text style={commonStyles.deckDescription}>Answer</Text>
-          <TextInput style={styles.textInput}/>
+          <TextInput
+            style={commonStyles.textInput}
+            placeholder="Answer goes here"
+            onChangeText={(answer) => this.setState({answer})}
+            returnKeyType="send"
+          />
           <View style={commonStyles.buttonContainer}>
-            <Button title="Submit" color={white} backgroundColor={green}/>
+            <Button title="Submit" color={white} backgroundColor={green} onPress={this.addCardToDeck}/>
           </View>
         </KeyboardAvoidingView>
       </View>
@@ -25,17 +50,8 @@ class AddCard extends PureComponent {
   }
 }
 
-const styles = StyleSheet.create({
-  textInput: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: 200
-  }
+const mapDispatchToProps = (dispatch) => ({
+  addCardToDeck: ({card, deckId}) => dispatch(addCard({card, deckId})),
 })
 
-const mapStateToProps = ({decks}, {navigation}) => ({
-  deck: decks.deckList[navigation.state.params.id],
-})
-
-export default connect(mapStateToProps)(AddCard)
+export default connect(null, mapDispatchToProps)(AddCard)

@@ -1,32 +1,26 @@
 export default {
-  deckList: {
-      A: {
-      deckId: 'A',
-      key: 'A',
-      deckName: 'some Cards',
-      cards: [
-        {
-          Q: 'a question',
-          A: 'an answer'
-        },
-        {
-          Q: 'a question',
-          A: 'an answer'
-        }
-      ]
-    },
-    B: {
-      deckId: 'B',
-      key: 'B',
-      deckName: 'some other Cards',
-      cards: [
-        {
-          Q: 'a question',
-          A: 'an answer'
-        }
-      ]
-    }
-    // text: 'some text'
+    deck_1533326026238: {
+    deckId: 'deck_1533326026238',
+    deckName: 'some Cards',
+    cards: [
+      {
+        Q: 'a question',
+        A: 'an answer'
+      },
+      {
+        Q: 'a question',
+        A: 'an answer'
+      }
+    ]
   },
-  refreshDeck: false
+  deck_1533326088552: {
+    deckId: 'deck_1533326088552',
+    deckName: 'some other Cards',
+    cards: [
+      {
+        Q: 'a question',
+        A: 'an answer'
+      }
+    ]
+  }
 }

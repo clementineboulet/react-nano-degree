@@ -36,5 +36,11 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     marginTop: 20
+  },
+  textInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    width: 200
   }
 });

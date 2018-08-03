@@ -10,6 +10,7 @@ import DeckView from './screens/DeckView'
 import AddCard from './screens/AddCard'
 import { purple, white, black, beige } from './utils/colors'
 import reducer from './redux/reducers'
+import middleware from './redux/middlewares'
 
 const createTabs = Platform.OS === 'ios' ? createBottomTabNavigator : createMaterialTopTabNavigator
 const styles = StyleSheet.create({
@@ -110,7 +111,7 @@ const MainNavigation = createStackNavigator({
       headerTitleContainerStyle: {
         padding: 0
       },
-      title: `Add a card to ${navigation.state.params.name}`
+      title: `Add card to ${navigation.state.params.name}`
     })
   }
 })
@@ -118,7 +119,7 @@ const MainNavigation = createStackNavigator({
 export default class App extends Component {
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={createStore(reducer, middleware)}>
         <View style={styles.container}>
           <View style={{height: Expo.Constants.statusBarHeight}} />
           <MainNavigation/>  

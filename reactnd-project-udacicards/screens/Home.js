@@ -13,16 +13,16 @@ class Home extends PureComponent {
 
   render() {
     const { deckList, refreshDeck } = this.props;
-    console.log(Object.values(deckList));
+    console.log(deckList);
     return (
       <ScrollView style={{flex: 1, backgroundColor: beige}}>
         {
           <FlatList
             data={Object.values(deckList)}
+            keyExtractor={({deckId}) => deckId}
             style={{flex: 1}}
             renderItem={({item: {deckId, deckName, cards}}) => 
             <Deck
-              key={deckId}
               id={deckId}
               name={deckName}
               cardsLength={cards.length}
@@ -36,8 +36,7 @@ class Home extends PureComponent {
 }
 
 const mapStateToProps = ({decks}) => ({
-  deckList: decks.deckList,
-  refreshDeck: decks.refreshDeck
+  deckList: decks
 })
 
 export default connect(mapStateToProps)(Home)

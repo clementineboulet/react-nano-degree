@@ -33,7 +33,8 @@ class DeckView extends PureComponent {
 }
 
 const mapStateToProps = ({decks}, {navigation}) => ({
-  deck: decks.deckList[navigation.state.params.id],
+  deck: decks[navigation.state.params.id],
+  decks,
 })
 
 export default connect(mapStateToProps)(DeckView)

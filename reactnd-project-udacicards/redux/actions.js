@@ -10,7 +10,7 @@ export function addDeck (deck) {
   }
 }
 
-export function addCard (card) {
+export function addCard ({card, deckId}) {
   return {
     type: ADD_CARD,
     deckId,
@@ -25,7 +25,7 @@ export function createQuiz (deckId) {
   }
 }
 
-export function addAnswer (answer) {
+export function addAnswerToQuiz (answer) {
   return {
     type: ADD_ANSWER,
     answer
