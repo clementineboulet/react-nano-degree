@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput, KeyboardAvoidingView } from 'react-native';
+import { Text, View, TextInput, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { green, white, beige } from '../utils/colors'
@@ -27,23 +27,35 @@ class AddCard extends Component {
     return (
       <View style={{backgroundColor: beige, flex: 1}}>
         <KeyboardAvoidingView behavior="padding" enabled style={[{backgroundColor: white, flex: 1}, commonStyles.deckCard]}>
-          <Text style={commonStyles.deckDescription}>Question</Text>
-          <TextInput
-            style={commonStyles.textInput}
-            placeholder="Type here your question"
-            onChangeText={(question) => this.setState({question})}
-            returnKeyType="next"
-          />
-          <Text style={commonStyles.deckDescription}>Answer</Text>
-          <TextInput
-            style={commonStyles.textInput}
-            placeholder="Answer goes here"
-            onChangeText={(answer) => this.setState({answer})}
-            returnKeyType="send"
-          />
-          <View style={commonStyles.buttonContainer}>
-            <Button title="Submit" color={white} backgroundColor={green} onPress={this.addCardToDeck}/>
-          </View>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View>
+              <Text style={commonStyles.deckDescription}>Question</Text>
+              <TextInput
+                style={commonStyles.textInput}
+                placeholder="Type here your question"
+                onChangeText={(question) => this.setState({question})}
+                returnKeyType="next"
+                onSubmitEditing={() => { this.secondTextInput.focus() }}
+              />
+              <Text style={commonStyles.deckDescription}>Answer</Text>
+              <TextInput
+                style={commonStyles.textInput}
+                placeholder="Answer goes here"
+                onChangeText={(answer) => this.setState({answer})}
+                returnKeyType="send"
+                ref={(input) => { this.secondTextInput = input }}
+                onSubmitEditing={this.addCardToDeck}
+              />
+              <View style={commonStyles.buttonContainer}>
+                <Button
+                  title="Submit"
+                  color={white}
+                  backgroundColor={green}
+                  onPress={this.addCardToDeck}
+                  />
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
       </View>
     )
