@@ -42,5 +42,13 @@ export default StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     width: 200
+  },
+  background: {
+    backgroundColor: beige,
+    flex: 1
+  },
+  foreground: {
+    backgroundColor: white,
+    flex: 1
   }
 });

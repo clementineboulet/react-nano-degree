@@ -3,7 +3,6 @@ import { ADD_DECK, ADD_CARD, NEW_QUIZ, ADD_ANSWER } from './actions'
 import initState from './initState'
 
 function decks (state = initState, action) {
-  console.log(action, state)
   switch (action.type) {
     case ADD_DECK :
       return {
@@ -23,17 +22,15 @@ function quiz (state = {}, action) {
   switch (action.type) {
     case NEW_QUIZ :
       return {
-        ...state,
-        quiz: {
-          deckId,
-          total: 0
-        },
+        deckId: action.deckId,
+        cardNumber: 0,
+        total: 0
       }
     case ADD_ANSWER :
-      const newState = Object.create({}, state);
-      newState.quiz.total += action.answer
       return {
-        ...newState
+        ...state,
+        cardNumber: ++state.cardNumber,
+        total: state.total + action.answer
       }
     default :
       return state

@@ -1,21 +1,20 @@
 import React, { PureComponent } from 'react'
-import { Text, View, FlatList, ScrollView } from 'react-native'
-import { NavigationActions } from 'react-navigation'
+import { FlatList, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import Deck from '../components/Deck'
-import { beige } from '../utils/colors'
+import navigationConst from '../utils/navigation'
+import commonStyles from '../utils/commonStyles'
 
 class Home extends PureComponent {
   goToDeck = (id) => {
     const { navigation, deckList } = this.props
-    navigation.navigate('DeckView', {id, name: deckList[id].deckName})
+    navigation.navigate(navigationConst.deckView, {id, name: deckList[id].deckName})
   }
 
   render() {
     const { deckList, refreshDeck } = this.props;
-    console.log(deckList);
     return (
-      <ScrollView style={{flex: 1, backgroundColor: beige}}>
+      <ScrollView style={commonStyles.background}>
         {
           <FlatList
             data={Object.values(deckList)}
@@ -27,7 +26,6 @@ class Home extends PureComponent {
               name={deckName}
               cardsLength={cards.length}
               goToDeck={this.goToDeck}/>}
-            extraData={refreshDeck}
           />
         }
       </ScrollView>

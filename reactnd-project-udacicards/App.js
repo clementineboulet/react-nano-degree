@@ -8,6 +8,7 @@ import Home from './screens/Home'
 import NewDeck from './screens/NewDeck'
 import DeckView from './screens/DeckView'
 import AddCard from './screens/AddCard'
+import Quiz from './screens/Quiz'
 import { purple, white, black, beige } from './utils/colors'
 import reducer from './redux/reducers'
 import middleware from './redux/middlewares'
@@ -113,6 +114,20 @@ const MainNavigation = createStackNavigator({
       },
       title: `Add card to ${navigation.state.params.name}`
     })
+  },
+  Quiz: {
+    screen: Quiz,
+    initialRouteName: 'Quiz',
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple
+      },
+      headerTitleContainerStyle: {
+        padding: 0
+      },
+      title: 'Quiz'
+    })
   }
 })
 
@@ -121,7 +136,7 @@ export default class App extends Component {
     return (
       <Provider store={createStore(reducer, middleware)}>
         <View style={styles.container}>
-          <View style={{height: Expo.Constants.statusBarHeight}} />
+          <View style={{height: Expo.Constants.statusBarHeight}}/>
           <MainNavigation/>  
         </View>
       </Provider>
