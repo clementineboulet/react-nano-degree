@@ -6,6 +6,14 @@ import Card from '../components/Card';
 import commonStyles from '../utils/commonStyles'
 import { setLocalNotification, clearLocalNotification } from '../utils/notifications'
 
+/**
+* @description Quiz Screen - Create a quiz
+* @constructor
+* @param {object} decks - the list of decks
+* @param {object} quiz - the current quiz status
+* @param {func} addAnswer - add an answer to the results of the quiz
+* @param {func} startNewQuiz - (Re)Start a new quiz from scratch
+*/
 class Quiz extends Component {
   question = 'Q'
   answer = 'A'
@@ -18,6 +26,11 @@ class Quiz extends Component {
       .then(setLocalNotification())
   }
 
+  /**
+  * @description (Re)Start a new quiz
+  * @constructor
+  * @param {string} deckId - the id of the current deck
+  */
   restart = (deckId) => {
     this.setState({
       title: this.question
@@ -44,7 +57,7 @@ class Quiz extends Component {
                   title: prevState.title === question ? answer : question
                 })))
               }
-              cardState={this.state.title === question ? 'answer': 'question'}
+              nextCardState={this.state.title === question ? 'answer': 'question'}
               remainingNumber={`${cardLength - cardNumber - 1}`}
             />
           : <Card

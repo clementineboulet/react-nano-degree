@@ -7,10 +7,19 @@ import commonStyles from '../utils/commonStyles'
 import Button from '../components/Button'
 import navigationConst from '../utils/navigation'
 
+/**
+* @description NewDeck Screen - Create a new Deck
+* @constructor
+* @param {func} addNewDeck - add a deck to the current list of decks
+*/
 class NewDeck extends Component {
   state = {
     deckName: '',
   }
+
+  /**
+  * @description add a new deck
+  */
   addNewDeck = () => {
     const { navigation, addNewDeck } = this.props
     const deckId = `deck_${Date.now()}`
@@ -38,6 +47,7 @@ class NewDeck extends Component {
             returnKeyType="send"
             onSubmitEditing={this.addNewDeck}
             blurOnSubmit
+
             ref={input => { this.textInput = input }}
           />
           <View style={commonStyles.buttonContainer}>

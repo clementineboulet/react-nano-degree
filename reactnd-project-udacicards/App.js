@@ -15,6 +15,8 @@ import middleware from './redux/middlewares'
 import { setLocalNotification } from './utils/notifications'
 
 const createTabs = Platform.OS === 'ios' ? createBottomTabNavigator : createMaterialTopTabNavigator
+
+//StyleSheets creation
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -54,6 +56,7 @@ const tabsOptions = {
   }
 }
 
+//Tabs Navigation creation
 const Tabs = createTabs({
   Home: {
     screen: Home,
@@ -78,6 +81,7 @@ const Tabs = createTabs({
   tabBarOptions: tabsOptions[Platform.OS]
 })
 
+//Stack Navigation creation
 const MainNavigation = createStackNavigator({
   Home: {
     screen: Tabs,
@@ -131,6 +135,10 @@ const MainNavigation = createStackNavigator({
     })
   }
 })
+
+/**
+* @description Represents a structure of the App with the Routing system described above
+*/
 
 export default class App extends Component {
   componentDidMount () {

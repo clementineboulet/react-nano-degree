@@ -1,3 +1,43 @@
+
+This is Clementine Boulet's project for the final assessment project for Udacity's React Native course.
+
+## Specifications
+I've used the [Create React Native App](https://github.com/react-community/create-react-native-app) to start the project.
+The project has been set up to work with both Android AND iOS devices.
+
+
+## Code walk through
+
+I used AsyncStorage and Redux combined to connect the store and the API. The logic can be found in the `/redux` folder. (the AsyncStorage notification system can be found separately in the `/utils/notifications.js`)
+
+The `App.js` file contains the Routing structure: Tabs were used for the `Home` view (deck list) and the `Create a new deck` view. The other screens are using a stack navigation systems.
+
+The `/utils` folder contains the notification set up, the common styles of the app, the navigation constants and the color values.
+
+The different screens can be found in the `/screens` folder:
+  - `Home.js` that contains the list of created decks.
+  - `NewDeck.js`, that allows the user to create a new deck
+  - `DeckView.js`, that show the current status of the deck, and add the possibilities of starting a new Quiz or add a new memo card.
+  - `AddCard.js`, Page to add a new card to the current deck
+  - `Quiz.js`, to start a new quiz
+
+The reusable components  can be found in /components folder:
+  - `Button.js`, a custom button used through the application.
+  - `Card.js`, that displays the card of the quiz and very modulable.
+  - `Deck.js`, that displays the deck card with the summary of its habilities.
+
+
+Hope you enjoy the show!
+
+Below the reference about the [Create React Native App](https://github.com/react-community/create-react-native-app) used to create this little app. 
+
+---------------------------------- TO GET STARTED -------------------------------------------
+To get started developing right away:
+
+install all project dependencies with npm install
+start the development server with npm start
+
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).

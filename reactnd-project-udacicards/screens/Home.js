@@ -5,7 +5,17 @@ import Deck from '../components/Deck'
 import navigationConst from '../utils/navigation'
 import commonStyles from '../utils/commonStyles'
 
+/**
+* @description Home Screen - Display the list of current decks
+* @constructor
+* @param {object} deckList - the list of decks
+*/
 class Home extends PureComponent {
+  /**
+  * @description go the invidual deck screen
+  * @constructor
+  * @param {string} id - the id of the selected deck
+  */
   goToDeck = (id) => {
     const { navigation, deckList } = this.props
     navigation.navigate(navigationConst.deckView, {id, name: deckList[id].deckName})

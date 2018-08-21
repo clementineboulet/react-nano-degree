@@ -9,10 +9,28 @@ const style = StyleSheet.create({
   }
 })
 
-export default function Button ({ backgroundColor, title, color, onPress, styles, disabled }) {
+/**
+* @description Deck Component
+* @constructor
+* @param {string} title - the text of the button
+* @param {string} backgroundColor - the background color of the button
+* @param {string} color - the foreground color of the button
+* @param {object} styles - the additional styles
+* @param {boolean} disabled - disable the button
+* @param {func} onPress - on press button event action
+*/
+
+export default function Button ({
+  backgroundColor,
+  title,
+  color,
+  onPress,
+  styles,
+  disabled
+}) {
   return (
     <TouchableOpacity
-      style={[styles, style.button, { backgroundColor: backgroundColor }]}
+      style={[styles, style.button, { backgroundColor: disabled? 'grey': backgroundColor }]}
       onPress={onPress}
       disabled={disabled}
     >

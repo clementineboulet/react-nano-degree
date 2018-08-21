@@ -3,6 +3,10 @@ import { Notifications, Permissions } from 'expo'
 
 const NOTIFICATION_KEY = 'UdaciCards:notifications'
 
+/**
+  * @description Create a new Notification
+  * @returns {Object} the object notification set up
+  */
 function createNotification () {
   return {
     title: 'Quiz Time!',
@@ -19,11 +23,17 @@ function createNotification () {
   }
 }
 
+/**
+  * @description Clear the local notification
+  */
 export function clearLocalNotification () {
-  return AsyncStorage.removeItem(NOTIFICATION_KEY)
+  AsyncStorage.removeItem(NOTIFICATION_KEY)
     .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
 
+/**
+  * @description set new Local the notification to 6pm of the next day
+  */
 export function setLocalNotification () {
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)

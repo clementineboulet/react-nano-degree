@@ -7,11 +7,20 @@ import Button from '../components/Button'
 import { addCard } from '../redux/actions'
 
 
+/**
+* @description Add a new Card Screen - add a new card to current deck
+* @constructor
+* @param {func} addCardToDeck - Add a card to current deck
+*/
 class AddCard extends Component {
   state = {
     Q: '',
     A: ''
   }
+
+  /**
+  * @description Add a card to deck
+  */
   addCardToDeck = () => {
     const { navigation, addCardToDeck } = this.props
     const deckId = navigation.state.params.id
