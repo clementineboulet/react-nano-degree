@@ -9,9 +9,10 @@ import NewDeck from './screens/NewDeck'
 import DeckView from './screens/DeckView'
 import AddCard from './screens/AddCard'
 import Quiz from './screens/Quiz'
-import { purple, white, black, beige } from './utils/colors'
+import { purple, white, black } from './utils/colors'
 import reducer from './redux/reducers'
 import middleware from './redux/middlewares'
+import { setLocalNotification } from './utils/notifications'
 
 const createTabs = Platform.OS === 'ios' ? createBottomTabNavigator : createMaterialTopTabNavigator
 const styles = StyleSheet.create({
@@ -132,6 +133,10 @@ const MainNavigation = createStackNavigator({
 })
 
 export default class App extends Component {
+  componentDidMount () {
+    setLocalNotification()
+  }
+
   render() {
     return (
       <Provider store={createStore(reducer, middleware)}>

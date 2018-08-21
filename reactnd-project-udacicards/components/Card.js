@@ -4,7 +4,7 @@ import commonStyles from '../utils/commonStyles'
 import { green, red, white } from '../utils/colors'
 import Button from './Button'
 
-export default function Card ({ title, addAnswer, goToTwin, result, goBack, restart }) {
+export default function Card ({ title, addAnswer, goToTwin, result, goBack, restart, cardState, remainingNumber }) {
   return (
     <TouchableOpacity style={commonStyles.deckCard} onPress={goToTwin}>
       <Text style={commonStyles.deckTitle}>
@@ -15,11 +15,19 @@ export default function Card ({ title, addAnswer, goToTwin, result, goBack, rest
         ? <Text style={commonStyles.deckDescription}>
             {result}
         </Text>
-        : null
+        :  <View>
+            <Text style={commonStyles.deckDescription}>
+            Tap the card to show the {cardState}
+            </Text>
+            <Text style={[commonStyles.deckDescription, { fontSize: 10 }]}>
+              {`${remainingNumber} ${remainingNumber > 1 ? 'questions' : 'question'} remaining`}
+            </Text>
+          </View>
+          
       }
       <View style={commonStyles.buttonContainer}>
             <Button
-              title={result ? 'Go back': 'Correct'}
+              title={result ? 'Back to Deck': 'Correct'}
               color={white}
               backgroundColor={green}
               onPress={() => result ? goBack() : addAnswer(1)}

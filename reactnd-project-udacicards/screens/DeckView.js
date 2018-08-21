@@ -32,8 +32,8 @@ class DeckView extends PureComponent {
               title="Start Quiz"
               color={white}
               backgroundColor={green}
-              onPress={startQuiz}/>
-            />
+              onPress={startQuiz}
+              disabled={deck.cards.length === 0}/>
             <Button
               title="Add a Card"
               color={white}

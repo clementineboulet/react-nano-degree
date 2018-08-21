@@ -12,7 +12,7 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { deckList, refreshDeck } = this.props;
+    const { deckList } = this.props;
     return (
       <ScrollView style={commonStyles.background}>
         {
@@ -21,11 +21,12 @@ class Home extends PureComponent {
             keyExtractor={({deckId}) => deckId}
             style={{flex: 1}}
             renderItem={({item: {deckId, deckName, cards}}) => 
-            <Deck
-              id={deckId}
-              name={deckName}
-              cardsLength={cards.length}
-              goToDeck={this.goToDeck}/>}
+              <Deck
+                id={deckId}
+                name={deckName}
+                cardsLength={cards.length}
+                goToDeck={this.goToDeck}/>
+            }
           />
         }
       </ScrollView>

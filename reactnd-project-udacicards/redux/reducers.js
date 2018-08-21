@@ -1,21 +1,35 @@
 import { combineReducers } from 'redux'
 import { ADD_DECK, ADD_CARD, NEW_QUIZ, ADD_ANSWER } from './actions'
-import initState from './initState'
+import { AsyncStorage } from 'react-native'
 
-function decks (state = initState, action) {
+const DECKS_KEY = 'UdaciCards:decks'
+
+function getInitState() {
+  let data
+  AsyncStorage.getItem(DECKS_KEY)
+    .then((results) => {
+      data = JSON.parse(results)
+    })
+  return data
+}
+
+function decks (state = getInitState(), action) {
+  let newState = {...state}
   switch (action.type) {
     case ADD_DECK :
-      return {
-        ...state,
+      newState = {
+        ...newState,
         ...action.deck
       }
+      break
     case ADD_CARD :
-      const newState = {...state}
       newState[action.deckId].cards.push(action.card)
-      return newState
+      break
     default :
-      return state
+      break
   }
+  AsyncStorage.setItem(DECKS_KEY, JSON.stringify(newState))
+  return newState
 }
 
 function quiz (state = {}, action) {

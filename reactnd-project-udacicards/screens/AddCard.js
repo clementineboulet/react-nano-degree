@@ -9,8 +9,8 @@ import { addCard } from '../redux/actions'
 
 class AddCard extends Component {
   state = {
-    question: '',
-    answer: ''
+    Q: '',
+    A: ''
   }
   addCardToDeck = () => {
     const { navigation, addCardToDeck } = this.props
@@ -31,7 +31,7 @@ class AddCard extends Component {
               <TextInput
                 style={commonStyles.textInput}
                 placeholder="Type here your question"
-                onChangeText={(question) => this.setState({question})}
+                onChangeText={(question) => this.setState({Q: question})}
                 returnKeyType="next"
                 onSubmitEditing={() => { this.secondTextInput.focus() }}
               />
@@ -39,7 +39,7 @@ class AddCard extends Component {
               <TextInput
                 style={commonStyles.textInput}
                 placeholder="Answer goes here"
-                onChangeText={(answer) => this.setState({answer})}
+                onChangeText={(answer) => this.setState({A: answer})}
                 returnKeyType="send"
                 ref={(input) => { this.secondTextInput = input }}
                 onSubmitEditing={addCardToDeck}

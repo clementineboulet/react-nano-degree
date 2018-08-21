@@ -22,6 +22,8 @@ class NewDeck extends Component {
     }
     navigation.navigate(navigationConst.home)
     addNewDeck(deck)
+    this.setState({ deckName: '' })
+    this.textInput.clear()
   }
 
   render() {
@@ -35,6 +37,8 @@ class NewDeck extends Component {
             onChangeText={(deckName) => this.setState({deckName})}
             returnKeyType="send"
             onSubmitEditing={this.addNewDeck}
+            blurOnSubmit
+            ref={input => { this.textInput = input }}
           />
           <View style={commonStyles.buttonContainer}>
             <Button title="Create" color={white} backgroundColor={green} onPress={this.addNewDeck}/>

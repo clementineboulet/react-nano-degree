@@ -4,12 +4,18 @@ import { connect } from 'react-redux'
 import { addAnswerToQuiz, createQuiz } from '../redux/actions'
 import Card from '../components/Card';
 import commonStyles from '../utils/commonStyles'
+import { setLocalNotification, clearLocalNotification } from '../utils/notifications'
 
 class Quiz extends Component {
   question = 'Q'
   answer = 'A'
   state={
     title: this.question
+  }
+
+  componentDidMount() {
+    clearLocalNotification()
+      .then(setLocalNotification())
   }
 
   restart = (deckId) => {
@@ -24,6 +30,7 @@ class Quiz extends Component {
     const { deckId, cardNumber, total } = quiz
     const cards = decks[deckId].cards
     const cardLength = cards.length
+    console.log('cards', cards, cards[cardNumber], this.state.title)
 
     return (
       <View style={commonStyles.background}>
@@ -37,6 +44,8 @@ class Quiz extends Component {
                   title: prevState.title === question ? answer : question
                 })))
               }
+              cardState={this.state.title === question ? 'answer': 'question'}
+              remainingNumber={`${cardLength - cardNumber - 1}`}
             />
           : <Card
               title="Your score is"

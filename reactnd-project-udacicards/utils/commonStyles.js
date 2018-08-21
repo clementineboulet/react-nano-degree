@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { white, black } from './colors'
+import { white, black, beige } from './colors'
 
 export default StyleSheet.create({
   deckCard: {
@@ -29,7 +29,8 @@ export default StyleSheet.create({
     color: black,
     fontSize: 20,
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    textAlign: 'center'
   },
   buttonContainer: {
     alignSelf: 'center',
